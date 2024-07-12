@@ -101,7 +101,11 @@ export class Input {
       return (this.firstNumber * this.secondNumber).toFixed(2);
     }
     if (this.eqSign === "/") {
-      return (this.firstNumber / this.secondNumber).toFixed(2);
+      if(this.secondNumber === 0){
+        return "ERROR"
+      }else{
+        return (this.firstNumber / this.secondNumber).toFixed(2);
+      }
     }
   };
 }
