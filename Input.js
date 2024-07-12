@@ -20,47 +20,64 @@ export class Input {
   };
 
   actionButtonPressed = (sign) => {
-    if (sign === "-" && this.inputContainer.innerHTML === "" && this.eqSign !== null) {
+    if (
+      sign === "-" &&
+      this.inputContainer.innerHTML === "" &&
+      this.eqSign !== null
+    ) {
       this.inputContainer.innerHTML = "-";
     }
-    if (this.firstNumber === null && this.checkIfInputIsCorrect() && sign !== "=") {
-      this.saveFirstNumberAndSign(sign)
-    } else if (this.secondNumber === null && this.checkIfInputIsCorrect()){
-      this.secondNumber = this.convertInputToNumber();
-      this.inputContainer.innerHTML = "";
-      this.firstNumber = this.doTheEq()
-      this.saveResultAndCleanInput()
-      if(sign !== "="){
-        this.setAndDisplayEqSign(sign)
-      }
+    if (
+      this.firstNumber === null &&
+      this.checkIfInputIsCorrect() &&
+      sign !== "="
+    ) {
+      this.saveFirstNumberAndSign(sign);
+    } else if (
+      this.firstNumber === null &&
+      this.checkIfInputIsCorrect() &&
+      sign === "="
+    ) {
+    } else if (this.inputContainer.innerHTML === "" && sign === "=") {
+    } else if (this.secondNumber === null && this.checkIfInputIsCorrect()) {
+      this.startNextEqUsingResult(sign)
     } else {
-      this.setAndDisplayEqSign(sign)
+      this.setAndDisplayEqSign(sign);
     }
   };
+  startNextEqUsingResult(sign){
+    this.secondNumber = this.convertInputToNumber();
+    this.inputContainer.innerHTML = "";
+    this.firstNumber = this.doTheEq();
+    this.saveResultAndCleanInput();
+    if (sign !== "=") {
+      this.setAndDisplayEqSign(sign);
+    }
+  }
 
   setAndDisplayEqSign = (sign) => {
-    this.eqSign = sign
-    this.displayLineSecond.innerHTML = sign
-  }
-  saveFirstNumberAndSign = (sign)=>{
+    this.eqSign = sign;
+    this.displayLineSecond.innerHTML = sign;
+  };
+  saveFirstNumberAndSign = (sign) => {
     this.firstNumber = this.convertInputToNumber();
-    this.inputContainer.innerHTML = ""
+    this.inputContainer.innerHTML = "";
     this.displayLineFirst.innerHTML = this.firstNumber;
-    this.eqSign = sign
-    this.displayLineSecond.innerHTML = this.eqSign
-  }
+    this.eqSign = sign;
+    this.displayLineSecond.innerHTML = this.eqSign;
+  };
 
-  saveResultAndCleanInput=()=>{
-    this.displayLineFirst.innerHTML = this.firstNumber
-    this.eqSign = null
-    this.secondNumber = null
-    this.displayLineSecond.innerHTML = ""
-    this.inputContainer.innerHTML = ""
-  }
+  saveResultAndCleanInput = () => {
+    this.displayLineFirst.innerHTML = this.firstNumber;
+    this.eqSign = null;
+    this.secondNumber = null;
+    this.displayLineSecond.innerHTML = "";
+    this.inputContainer.innerHTML = "";
+  };
 
-  convertInputToNumber=()=> {
+  convertInputToNumber = () => {
     return parseFloat(this.inputContainer.innerHTML);
-  }
+  };
   checkIfInputIsCorrect() {
     if (
       this.inputContainer.innerHTML !== "" &&
@@ -74,7 +91,7 @@ export class Input {
 
   doTheEq = () => {
     if (this.eqSign === "+") {
-      return (Number(this.firstNumber) + Number(this.secondNumber)).toFixed(2);
+      return (this.firstNumber + this.secondNumber).toFixed(2);
     }
     if (this.eqSign === "-") {
       return (this.firstNumber - this.secondNumber).toFixed(2);
