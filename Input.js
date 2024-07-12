@@ -8,11 +8,11 @@ export class Input {
     this.displayLine2 = displayLine2;
   }
   digitButtonPressed = (digit) => {
-    if(digit !== "."){
+    if (digit !== ".") {
       this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
-    } else if (this.inputContainer.innerHTML.includes(".") !== true){
-      if(this.inputContainer.innerHTML === "") {
-        this.inputContainer.innerHTML = "0."
+    } else if (this.inputContainer.innerHTML.includes(".") !== true) {
+      if (this.inputContainer.innerHTML === "") {
+        this.inputContainer.innerHTML = "0.";
       } else {
         this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
       }
@@ -20,8 +20,28 @@ export class Input {
   };
 
   actionButtonPressed = (sign) => {
-
+    if (sign === "-" && this.inputContainer.innerHTML === "") {
+      this.inputContainer.innerHTML = "-";
+    }
+    if (this.firstNumber === null && this.checkIfInputIsCorrect()) {
+      this.firstNumber = this.convertInputToNumber();
+      this.displayLine1.innerHTML = this.firstNumber;
+    }
   };
+
+  convertInputToNumber() {
+    return parseFloat(this.inputContainer.innerHTML);
+  }
+  checkIfInputIsCorrect() {
+    if (
+      this.inputContainer.innerHTML !== "" &&
+      this.inputContainer.innerHTML !== "-" &&
+      this.inputContainer.innerHTML !== "-0." &&
+      this.inputContainer.innerHTML !== "-0"
+    ) {
+      return true;
+    }
+  }
 
   doTheEq = () => {
     if (this.eqSign === "+") {
