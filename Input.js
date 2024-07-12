@@ -1,11 +1,11 @@
 export class Input {
-  constructor(inputContainer, displayLine1, displayLine2) {
+  constructor(inputContainer, displayLineFirst, displayLineSecond) {
     this.inputContainer = inputContainer;
     this.firstNumber = null;
     this.secondNumber = null;
     this.eqSign = null;
-    this.displayLine1 = displayLine1;
-    this.displayLine2 = displayLine2;
+    this.displayLineFirst = displayLineFirst;
+    this.displayLineSecond = displayLineSecond;
   }
   digitButtonPressed = (digit) => {
     if (digit !== ".") {
@@ -20,16 +20,45 @@ export class Input {
   };
 
   actionButtonPressed = (sign) => {
-    if (sign === "-" && this.inputContainer.innerHTML === "") {
+    if (sign === "-" && this.inputContainer.innerHTML === "" && this.eqSign !== null) {
       this.inputContainer.innerHTML = "-";
     }
-    if (this.firstNumber === null && this.checkIfInputIsCorrect()) {
-      this.firstNumber = this.convertInputToNumber();
-      this.displayLine1.innerHTML = this.firstNumber;
+    if (this.firstNumber === null && this.checkIfInputIsCorrect() && sign !== "=") {
+      this.saveFirstNumberAndSign(sign)
+    } else if (this.secondNumber === null && this.checkIfInputIsCorrect()){
+      this.secondNumber = this.convertInputToNumber();
+      this.inputContainer.innerHTML = "";
+      this.firstNumber = this.doTheEq()
+      this.saveResultAndCleanInput()
+      if(sign !== "="){
+        this.setAndDisplayEqSign(sign)
+      }
+    } else {
+      this.setAndDisplayEqSign(sign)
     }
   };
 
-  convertInputToNumber() {
+  setAndDisplayEqSign = (sign) => {
+    this.eqSign = sign
+    this.displayLineSecond.innerHTML = sign
+  }
+  saveFirstNumberAndSign = (sign)=>{
+    this.firstNumber = this.convertInputToNumber();
+    this.inputContainer.innerHTML = ""
+    this.displayLineFirst.innerHTML = this.firstNumber;
+    this.eqSign = sign
+    this.displayLineSecond.innerHTML = this.eqSign
+  }
+
+  saveResultAndCleanInput=()=>{
+    this.displayLineFirst.innerHTML = this.firstNumber
+    this.eqSign = null
+    this.secondNumber = null
+    this.displayLineSecond.innerHTML = ""
+    this.inputContainer.innerHTML = ""
+  }
+
+  convertInputToNumber=()=> {
     return parseFloat(this.inputContainer.innerHTML);
   }
   checkIfInputIsCorrect() {

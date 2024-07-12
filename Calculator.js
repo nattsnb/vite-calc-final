@@ -16,16 +16,16 @@ export class Calculator {
     buttonRows.forEach(this.createRowWithButtons);
   }
   createInput = () => {
-    this.createRow().setAttribute("id", "display-line1");
-    const displayLine1 = document.querySelector("#display-line1");
-    displayLine1.classList.add(`display`);
-    this.createRow().setAttribute("id", "display-line2");
-    const displayLine2 = document.querySelector("#display-line2");
-    displayLine2.classList.add(`display`);
+    this.createRow().setAttribute("id", "display-line-first");
+    const displayLineFirst = document.querySelector("#display-line-first");
+    displayLineFirst.classList.add(`display`);
+    this.createRow().setAttribute("id", "display-line-second");
+    const displayLineSecond = document.querySelector("#display-line-second");
+    displayLineSecond.classList.add(`display`);
     this.createRow().setAttribute("id", "input-container");
     const inputContainer = document.querySelector("#input-container");
     inputContainer.classList.add(`display`);
-    this.input = new Input(inputContainer, displayLine1, displayLine2);
+    this.input = new Input(inputContainer, displayLineFirst, displayLineSecond);
   };
   createRowWithButtons = (buttonsArray) => {
     const row = document.createElement("div");
