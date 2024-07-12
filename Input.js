@@ -8,7 +8,8 @@ export class Input {
     this.displayLineSecond = displayLineSecond;
   }
   digitButtonPressed = (digit) => {
-    if (digit !== ".") {
+    if (this.firstNumber && !this.eqSign) {
+    } else if (digit !== ".") {
       this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
     } else if (this.inputContainer.innerHTML.includes(".") !== true) {
       if (this.inputContainer.innerHTML === "") {
@@ -40,12 +41,12 @@ export class Input {
     ) {
     } else if (this.inputContainer.innerHTML === "" && sign === "=") {
     } else if (this.secondNumber === null && this.checkIfInputIsCorrect()) {
-      this.startNextEqUsingResult(sign)
+      this.startNextEqUsingResult(sign);
     } else {
       this.setAndDisplayEqSign(sign);
     }
   };
-  startNextEqUsingResult(sign){
+  startNextEqUsingResult(sign) {
     this.secondNumber = this.convertInputToNumber();
     this.inputContainer.innerHTML = "";
     this.firstNumber = this.doTheEq();
