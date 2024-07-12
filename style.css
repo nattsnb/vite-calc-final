@@ -1,35 +1,35 @@
 #app {
-    display: flex;
-    flex-direction: column;
-    width: 280px;
-    height: 370px;
-    background-color: mediumslateblue;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 370px;
+  background-color: mediumslateblue;
+  padding: 10px;
 }
 
 .display {
-    background-color: black;
-    font-size: 20px;
-    color: #fab20d;
-    width: 280px;
-    height: 80px;
+  background-color: black;
+  font-size: 20px;
+  color: #fab20d;
+  width: 280px;
+  height: 80px;
 }
 
 .button {
-    height: 60px;
-    width: 60px;
-    background-color: pink;
-    font-size: 30px;
-    margin: 5px;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 60px;
+  width: 60px;
+  background-color: pink;
+  font-size: 30px;
+  margin: 5px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    height: 75px;
-    background-color: hotpink;
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+  background-color: hotpink;
 }
