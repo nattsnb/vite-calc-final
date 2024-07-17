@@ -100,13 +100,11 @@ export class Input {
       const result = (this.firstNumber * this.secondNumber).toFixed(2);
       return parseFloat(result)
     }
-    if (this.eqSign === "/") {
-      if(this.secondNumber === 0){
+    if (this.eqSign === "/" && this.secondNumber === 0) {
         return "ERROR"
-      }else{
+      }else if (this.eqSign === "/"){
         const result = (this.firstNumber / this.secondNumber).toFixed(2);
         return parseFloat(result)
       }
     }
-  };
 }
