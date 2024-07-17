@@ -8,41 +8,43 @@ export class Input {
     this.displayLineSecond = displayLineSecond;
   }
 
-  firstNumberPresentButNoEqSign(){
-    return (this.firstNumber && !this.eqSign)
+  firstNumberPresentButNoEqSign() {
+    return this.firstNumber && !this.eqSign;
   }
-  addDigitToInputContainer(digit){
+  addDigitToInputContainer(digit) {
     this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
   }
   inputDoesntIncludeDot() {
-    return(this.inputContainer.innerHTML.includes(".") !== true)
-}
-  addDotToInput(digit){
-    this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit
+    return this.inputContainer.innerHTML.includes(".") !== true;
+  }
+  addDotToInput(digit) {
+    this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
   }
 
-  minusClickedBeforeNumber(sign){
-    return(sign === "-" &&
-    this.inputContainer.innerHTML === "" &&
-    this.eqSign !== null)
+  minusClickedBeforeNumber(sign) {
+    return (
+      sign === "-" &&
+      this.inputContainer.innerHTML === "" &&
+      this.eqSign !== null
+    );
   }
   actionButtonPressedWhileFirstOperation(sign) {
-    return (this.firstNumber === null &&
-        this.checkIfInputIsCorrect() &&
-        sign !== "=")
+    return (
+      this.firstNumber === null && this.checkIfInputIsCorrect() && sign !== "="
+    );
   }
 
   eqButtonPressedWhileFirstOperation(sign) {
-    return (this.firstNumber === null &&
-        this.checkIfInputIsCorrect() &&
-        sign === "=")
+    return (
+      this.firstNumber === null && this.checkIfInputIsCorrect() && sign === "="
+    );
   }
 
-  eqButtonPressedWithNoInput(sign){
-    return(this.inputContainer.innerHTML === "" && sign === "=")
+  eqButtonPressedWithNoInput(sign) {
+    return this.inputContainer.innerHTML === "" && sign === "=";
   }
   actionButtonPressedAfterDisplayingResult() {
-    return(this.secondNumber === null && this.checkIfInputIsCorrect())
+    return this.secondNumber === null && this.checkIfInputIsCorrect();
   }
 
   startNextEqUsingResult(sign) {
@@ -84,27 +86,27 @@ export class Input {
       this.inputContainer.innerHTML !== "-" &&
       this.inputContainer.innerHTML !== "-0." &&
       this.inputContainer.innerHTML !== "-0"
-    )
+    );
   }
 
   doTheEq = () => {
     if (this.eqSign === "+") {
-      const result = (this.firstNumber + this.secondNumber).toFixed(2)
-      return parseFloat(result) ;
+      const result = (this.firstNumber + this.secondNumber).toFixed(2);
+      return parseFloat(result);
     }
     if (this.eqSign === "-") {
       const result = (this.firstNumber - this.secondNumber).toFixed(2);
-      return parseFloat(result)
+      return parseFloat(result);
     }
     if (this.eqSign === "*") {
       const result = (this.firstNumber * this.secondNumber).toFixed(2);
-      return parseFloat(result)
+      return parseFloat(result);
     }
     if (this.eqSign === "/" && this.secondNumber === 0) {
-        return "ERROR"
-      }else if (this.eqSign === "/"){
-        const result = (this.firstNumber / this.secondNumber).toFixed(2);
-        return parseFloat(result)
-      }
+      return "ERROR";
+    } else if (this.eqSign === "/") {
+      const result = (this.firstNumber / this.secondNumber).toFixed(2);
+      return parseFloat(result);
     }
+  };
 }
