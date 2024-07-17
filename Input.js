@@ -89,19 +89,23 @@ export class Input {
 
   doTheEq = () => {
     if (this.eqSign === "+") {
-      return (this.firstNumber + this.secondNumber).toFixed(2);
+      const result = (this.firstNumber + this.secondNumber).toFixed(2)
+      return parseFloat(result) ;
     }
     if (this.eqSign === "-") {
-      return (this.firstNumber - this.secondNumber).toFixed(2);
+      const result = (this.firstNumber - this.secondNumber).toFixed(2);
+      return parseFloat(result)
     }
     if (this.eqSign === "*") {
-      return (this.firstNumber * this.secondNumber).toFixed(2);
+      const result = (this.firstNumber * this.secondNumber).toFixed(2);
+      return parseFloat(result)
     }
     if (this.eqSign === "/") {
       if(this.secondNumber === 0){
         return "ERROR"
       }else{
-        return (this.firstNumber / this.secondNumber).toFixed(2);
+        const result = (this.firstNumber / this.secondNumber).toFixed(2);
+        return parseFloat(result)
       }
     }
   };
