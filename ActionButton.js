@@ -11,8 +11,4 @@ export class ActionButton extends Button {
   clickOnAction = () => {
     this.calculator.input.actionButtonPressed(this.sign);
   };
-
-  deleteEventListener = () => {
-    this.buttonContainer.removeEventListener("click", this.clickOnAction);
-  };
 }

@@ -80,14 +80,12 @@ export class Input {
     return parseFloat(this.inputContainer.innerHTML);
   };
   checkIfInputIsCorrect() {
-    if (
+    return (
       this.inputContainer.innerHTML !== "" &&
       this.inputContainer.innerHTML !== "-" &&
       this.inputContainer.innerHTML !== "-0." &&
       this.inputContainer.innerHTML !== "-0"
-    ) {
-      return true;
-    }
+    )
   }
 
   doTheEq = () => {

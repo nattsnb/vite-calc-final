@@ -11,7 +11,4 @@ export class DigitButton extends Button {
   clickOnDigit = () => {
     this.calculator.input.digitButtonPressed(this.sign);
   };
-  deleteEventListener = () => {
-    this.buttonContainer.removeEventListener("click", this.clickOnDigit);
-  };
 }
