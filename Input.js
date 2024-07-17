@@ -7,45 +7,44 @@ export class Input {
     this.displayLineFirst = displayLineFirst;
     this.displayLineSecond = displayLineSecond;
   }
-  digitButtonPressed = (digit) => {
-    if (this.firstNumber && !this.eqSign) {
-    } else if (digit !== ".") {
-      this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
-    } else if (this.inputContainer.innerHTML.includes(".") !== true) {
-      if (this.inputContainer.innerHTML === "") {
-        this.inputContainer.innerHTML = "0.";
-      } else {
-        this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
-      }
-    }
-  };
 
-  actionButtonPressed = (sign) => {
-    if (
-      sign === "-" &&
-      this.inputContainer.innerHTML === "" &&
-      this.eqSign !== null
-    ) {
-      this.inputContainer.innerHTML = "-";
-    }
-    if (
-      this.firstNumber === null &&
-      this.checkIfInputIsCorrect() &&
-      sign !== "="
-    ) {
-      this.saveFirstNumberAndSign(sign);
-    } else if (
-      this.firstNumber === null &&
-      this.checkIfInputIsCorrect() &&
-      sign === "="
-    ) {
-    } else if (this.inputContainer.innerHTML === "" && sign === "=") {
-    } else if (this.secondNumber === null && this.checkIfInputIsCorrect()) {
-      this.startNextEqUsingResult(sign);
-    } else {
-      this.setAndDisplayEqSign(sign);
-    }
-  };
+  firstNumberPresentButNoEqSign(){
+    return (this.firstNumber && !this.eqSign)
+  }
+  addDigitToInputContainer(digit){
+    this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit;
+  }
+  inputDoesntIncludeDot() {
+    return(this.inputContainer.innerHTML.includes(".") !== true)
+}
+  addDotToInput(digit){
+    this.inputContainer.innerHTML = this.inputContainer.innerHTML + digit
+  }
+
+  minusClickedBeforeNumber(sign){
+    return(sign === "-" &&
+    this.inputContainer.innerHTML === "" &&
+    this.eqSign !== null)
+  }
+  actionButtonPressedWhileFirstOperation(sign) {
+    return (this.firstNumber === null &&
+        this.checkIfInputIsCorrect() &&
+        sign !== "=")
+  }
+
+  eqButtonPressedWhileFirstOperation(sign) {
+    return (this.firstNumber === null &&
+        this.checkIfInputIsCorrect() &&
+        sign === "=")
+  }
+
+  eqButtonPressedWithNoInput(sign){
+    return(this.inputContainer.innerHTML === "" && sign === "=")
+  }
+  actionButtonPressedAfterDisplayingResult() {
+    return(this.secondNumber === null && this.checkIfInputIsCorrect())
+  }
+
   startNextEqUsingResult(sign) {
     this.secondNumber = this.convertInputToNumber();
     this.inputContainer.innerHTML = "";
