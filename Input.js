@@ -109,4 +109,23 @@ export class Input {
       return parseFloat(result);
     }
   };
+  deleteLastDigitFromInput() {
+    if (this.inputContainer.innerHTML === "0.") {
+      this.inputContainer.innerHTML = "";
+    } else {
+      this.inputContainer.innerHTML = this.inputContainer.innerHTML.slice(
+        0,
+        -1,
+      );
+    }
+  }
+
+  clearCalculator() {
+    this.firstNumber = null;
+    this.secondNumber = null;
+    this.inputContainer.innerHTML = "";
+    this.displayLineFirst.innerHTML = null;
+    this.eqSign = null;
+    this.displayLineSecond.innerHTML = null;
+  }
 }

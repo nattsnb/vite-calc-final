@@ -1,6 +1,8 @@
 import { Input } from "./Input.js";
 import { DigitButton } from "./DigitButton.js";
 import { ActionButton } from "./ActionButton.js";
+import { DeleteButton } from "./DeleteButton.js";
+import { ClearButton } from "./ClearButton.js";
 
 export class Calculator {
   constructor() {
@@ -14,6 +16,7 @@ export class Calculator {
       [".", "0", "=", "/"],
     ];
     buttonRows.forEach(this.createRowWithButtons);
+    this.createRowWithEreaseButtons();
   }
   createInput = () => {
     this.createRow().setAttribute("id", "display-line-first");
@@ -46,6 +49,17 @@ export class Calculator {
     this.appcontainer.append(row);
     return row;
   };
+  createRowWithEreaseButtons() {
+    const row = document.createElement("div");
+    row.classList.add(`row`);
+    const deleteButtonContainer = document.createElement("div");
+    row.append(deleteButtonContainer);
+    new DeleteButton("Delete", this, deleteButtonContainer);
+    const clearButtonContainer = document.createElement("div");
+    row.append(clearButtonContainer);
+    new ClearButton("Clear", this, clearButtonContainer);
+    this.appcontainer.append(row);
+  }
 
   createRow = () => {
     const row = document.createElement("div");
