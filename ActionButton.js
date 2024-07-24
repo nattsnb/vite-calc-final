@@ -17,8 +17,11 @@ export class ActionButton extends Button {
     }
     if (this.calculator.input.actionButtonPressedWhileFirstOperation(sign)) {
       this.calculator.input.saveFirstNumberAndSign(sign);
-    } else if (this.calculator.input.eqButtonPressedWhileFirstOperation(sign)) {
-    } else if (this.calculator.input.eqButtonPressedWithNoInput(sign)) {
+    } else if (
+      this.calculator.input.eqButtonPressedWhileFirstOperation(sign) ||
+      this.calculator.input.eqButtonPressedWithNoInput(sign)
+    ) {
+      return;
     } else if (
       this.calculator.input.actionButtonPressedAfterDisplayingResult()
     ) {
